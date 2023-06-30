@@ -1,0 +1,19 @@
+version: '4'
+
+services:
+  web:
+    image: nginx:latest
+    volumes:
+      - ./:/var/www/
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+    ports:
+      - "8876:80"
+    depends_on:
+      - php
+
+    container_name: app_web
+    
+  php:
+    image: php:8.2-fpm
+    volumes:
+      - ./:/var/www/
